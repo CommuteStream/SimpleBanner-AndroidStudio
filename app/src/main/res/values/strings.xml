@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SimpleBannerStudio</string>
+
+    <string name="hello_world1">TrackingDisplayed CTA,Red,41420 (Addison)</string>
+    <string name="hello_world2">TrackingDisplayed CTA,Red,41450 (Chicago)</string>
+    <string name="hello_world3">alertDisplayed CTA,Red,null (addison)</string>
+    <string name="action_settings">Settings</string>
+    <string name="banner_ad_unit_id_test">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_unit_id">ca-app-pub-2799280727395657/2144938121</string>
+</resources>
