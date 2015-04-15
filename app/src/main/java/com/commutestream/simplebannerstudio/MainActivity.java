@@ -47,8 +47,8 @@ public class MainActivity extends ActionBarActivity {
         // Let's pretend that our app just displayed some arrival time information for two different
         // train stops, and also displayed some alert information for the "Red" line route. This is
         // how we would tell CommuteStream about it.
-        CommuteStream.trackingDisplayed("CTA", "Red", "41420"); // Addison
-        CommuteStream.trackingDisplayed("CTA", "Red", "41450"); // Chicago
+        CommuteStream.trackingDisplayed("cta", "Red", "41420"); // Addison
+        CommuteStream.trackingDisplayed("cta", "Red", "41450"); // Chicago
         CommuteStream.alertDisplayed("cta", "Red", null);
 
     }
