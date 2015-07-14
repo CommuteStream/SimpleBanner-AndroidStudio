@@ -5,6 +5,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,6 +13,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import com.commutestream.ads.*;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -28,8 +32,8 @@ public class MainActivity extends ActionBarActivity {
                 .getLastKnownLocation(NetworkLocationProvider);
 
         CommuteStream.init();
-        //CommuteStream.setTesting();
-        CommuteStream.setApi_url("https://api.commutestreamdev.com:3000/");
+        CommuteStream.setTestingFlag(false);
+        CommuteStream.setBaseURL("https://api.commutestream.com:3000/");
         CommuteStream.setTheme("dark");
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
@@ -50,9 +54,16 @@ public class MainActivity extends ActionBarActivity {
         CommuteStream.trackingDisplayed("cta", "Red", "41420"); // Addison
         CommuteStream.trackingDisplayed("cta", "Red", "41450"); // Chicago
         CommuteStream.alertDisplayed("cta", "Red", null);
-
+        TimerTask myTimerTask = new TimerTask() {
+            @Override
+            public void run() {
+                Log.v("SimpleBanner", "adding displayed tracking");
+                CommuteStream.trackingDisplayed("cta", "Red", "41420");
+            }
+        };
+        Timer myTimer = new Timer();
+        myTimer.scheduleAtFixedRate(myTimerTask, 5000, 5000);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
