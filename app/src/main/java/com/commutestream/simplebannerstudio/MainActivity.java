@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
                 .getLastKnownLocation(NetworkLocationProvider);
 
         CommuteStream.init();
-        CommuteStream.setTestingFlag(false);
+        CommuteStream.setTestingFlag(true);
         CommuteStream.setBaseURL("https://api.commutestream.com:3000/");
         CommuteStream.setTheme("dark");
 
