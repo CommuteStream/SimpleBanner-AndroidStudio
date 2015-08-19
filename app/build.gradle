@@ -33,7 +33,7 @@ repositories {
 }
 
 dependencies {
-    compile(name:'adclient', ext:'aar')
+    compile(name:'commutestream-sdk-0.3.0', ext:'aar')
     compile 'com.loopj.android:android-async-http:1.4.+'
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.google.android.gms:play-services:6.+'
