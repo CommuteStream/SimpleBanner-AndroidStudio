@@ -1,10 +1,12 @@
 package com.commutestream.simplebannerstudio;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,12 +14,12 @@ import android.view.MenuItem;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-import com.commutestream.ads.*;
+import com.commutestream.sdk.*;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,22 +30,29 @@ public class MainActivity extends ActionBarActivity {
         LocationManager locationManager = (LocationManager) this
                 .getSystemService(Context.LOCATION_SERVICE);
         String NetworkLocationProvider = LocationManager.NETWORK_PROVIDER;
-        Location lastKnownLocation = locationManager
-                .getLastKnownLocation(NetworkLocationProvider);
 
-        CommuteStream.init();
+
+
         CommuteStream.setTestingFlag(true);
         CommuteStream.setBaseURL("https://api.commutestream.com:3000/");
         CommuteStream.setTheme("dark");
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
         //AdRequest adRequest = new AdRequest.Builder().build();
-        AdRequest adRequest = new AdRequest.Builder()
-                .setLocation(lastKnownLocation).build();
+        AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
+
+        if (checkCallingOrSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && checkCallingOrSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            Location lastKnownLocation = locationManager
+                    .getLastKnownLocation(NetworkLocationProvider);
+            adRequestBuilder.setLocation(lastKnownLocation);
+            CommuteStream.setLocation(lastKnownLocation);
+        }
+
+        AdRequest adRequest = adRequestBuilder.build();
         mAdView.loadAd(adRequest);
 
         /*
-		 * CommuteStream pays you more when you supply more information about
+         * CommuteStream pays you more when you supply more information about
 		 * your users. Most importantly, what transit information they are viewing,
 		 * and also location, and when they do things like bookmarking or planning a trip.
 		 */
