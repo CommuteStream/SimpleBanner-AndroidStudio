@@ -27,12 +27,6 @@ android {
     }
 }
 
-repositories {
-    maven {
-        url "http://dl.bintray.com/commutestream/commutestream-sdk"
-    }
-}
-
 dependencies {
     compile 'com.commutestream.sdk:commutestream-sdk:0.4.0'
     compile 'com.android.support:appcompat-v7:23.0.1'
