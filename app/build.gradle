@@ -1,9 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-    }
-
+    useLibrary 'org.apache.http.legacy'
     compileSdkVersion 23
     buildToolsVersion '23.0.1'
     defaultConfig {
@@ -13,21 +11,28 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    signingConfigs {
+        release {
+            keyAlias 'Test'
+            keyPassword 'test1234'
+            storeFile file('release.keystore')
+            storePassword 'test1234'
+        }
+    }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
-    productFlavors {
-    }
 }
 
 dependencies {
-    compile 'com.commutestream.sdk:commutestream-sdk:0.4.0'
-    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.commutestream.sdk:commutestream-sdk:0.5.0'
+    compile 'com.google.android.gms:play-services:8.3.0'
 }
