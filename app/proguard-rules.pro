@@ -16,6 +16,9 @@
 #   public *;
 #}
 
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.stream.** { *; }
+
 -keep public class com.google.android.gms.ads.** {
     public *;
 }
@@ -23,11 +26,12 @@
     public *;
 }
 -keep public class com.commutestream.sdk.** {
-    public *;
+    *;
 }
 -dontwarn okio.**
 -dontwarn retrofit.**
 -keep class retrofit.** { *; }
 -keepattributes Signature
+-keepattributes *Annotation*
 -keepattributes Exceptions
 
