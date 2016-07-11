@@ -19,9 +19,6 @@
 -keep class sun.misc.Unsafe { *; }
 -keep class com.google.gson.stream.** { *; }
 
-#-keep public class com.google.android.gms.ads.** {
-#    public *;
-#}
 -keep public class com.google.ads.** {
     public *;
 }
