@@ -19,9 +19,9 @@
 -keep class sun.misc.Unsafe { *; }
 -keep class com.google.gson.stream.** { *; }
 
--keep public class com.google.android.gms.ads.** {
-    public *;
-}
+#-keep public class com.google.android.gms.ads.** {
+#    public *;
+#}
 -keep public class com.google.ads.** {
     public *;
 }
@@ -29,8 +29,8 @@
     *;
 }
 -dontwarn okio.**
--dontwarn retrofit.**
--keep class retrofit.** { *; }
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
 -keepattributes Signature
 -keepattributes *Annotation*
 -keepattributes Exceptions
